@@ -1,0 +1,25 @@
+<template>
+    <Head :show="true" :userName="userName"></Head>
+    
+</template>
+
+<script>
+import Head from '@/components/Head';
+
+export default {
+    name: 'Homepage',
+    components: { Head },
+    data () {
+        return {
+            userName: '',
+        }
+    },
+    beforeMount: function() {
+        let _this = this;
+        _this.userName = _this.$route.params.userName;
+    },
+    methods: {
+        
+    }
+}
+</script>
