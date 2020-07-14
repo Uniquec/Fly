@@ -2,13 +2,8 @@
     <div class="homepage-box">
         <Head :show="true" :userName="userName"></Head>
         <div class="left-content">
-            <div class="add-btn-box">
-                <el-button 
-                    type="text" 
-                    icon="el-icon-circle-plus-outline" 
-                    class="add-btn"
-                    @click="selectLeftItem(0)"
-                >新增记录</el-button>
+            <div class="operate-item" :class="{'selected-item': isAdd}">
+                <el-link icon="el-icon-circle-plus-outline" @click="selectLeftItem(0)">新增记录</el-link>
             </div>
             <div class="operate-item" :class="{'selected-item': isCurrentMonth}">
                 <el-link icon="el-icon-s-grid" @click="selectLeftItem(1)">当月明细</el-link>
@@ -18,25 +13,21 @@
             </div>
         </div>
         <AddRecord v-show="isAdd"></AddRecord>
-        <CurrentMonth v-show="isCurrentMonth"></CurrentMonth>
-        <LastMonth v-show="isLastMonth"></LastMonth>
     </div>
 </template>
 
 <script>
 import Head from '@/components/Head';
 import AddRecord from '@/components/AddRecord';
-import CurrentMonth from '@/components/CurrentMonth';
-import LastMonth from '@/components/LastMonth';
 
 export default {
     name: 'Homepage',
-    components: { Head, AddRecord, CurrentMonth, LastMonth },
+    components: { Head, AddRecord },
     data () {
         return {
             userName: '',
-            isAdd: false,
-            isCurrentMonth: true,
+            isAdd: true,
+            isCurrentMonth: false,
             isLastMonth: false,
         }
     },
@@ -52,7 +43,7 @@ export default {
             _this.isLastMonth = false;
             if(index === 0) {
                 _this.isAdd = true;
-            }  else if(index === 1) {
+            } else if(index === 1) {
                 _this.isCurrentMonth = true;
             } else {
                 _this.isLastMonth = true;
@@ -64,20 +55,12 @@ export default {
 <style scoped>
 .homepage-box {
     display: flex;
-    flex-wrap: wrap;
 }
 .left-content {
     width: 15%;
     height: calc(100vh - 81px);
     border-right: 2px solid #dce3e9;
-    padding: 20px 0 20px;
-}
-.add-btn-box {
-    text-align: center;
-    margin-bottom: 20px;
-}
-.add-btn {
-    font-size: 18px;
+    padding: 20px 0;
 }
 .operate-item {
     width: 100%;

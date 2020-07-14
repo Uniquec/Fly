@@ -7,35 +7,30 @@
                     type="text" 
                     icon="el-icon-circle-plus-outline" 
                     class="add-btn"
-                    @click="selectLeftItem(0)"
+                    @click="addRecord"
                 >新增记录</el-button>
             </div>
             <div class="operate-item" :class="{'selected-item': isCurrentMonth}">
-                <el-link icon="el-icon-s-grid" @click="selectLeftItem(1)">当月明细</el-link>
+                <el-link icon="el-icon-s-grid" @click="selectLeftItem(0)">当月明细</el-link>
             </div>
             <div class="operate-item" :class="{'selected-item': isLastMonth}">
-                <el-link icon="el-icon-s-data" @click="selectLeftItem(2)">往月明细</el-link>
+                <el-link icon="el-icon-s-data" @click="selectLeftItem(1)">往月明细</el-link>
             </div>
         </div>
-        <AddRecord v-show="isAdd"></AddRecord>
-        <CurrentMonth v-show="isCurrentMonth"></CurrentMonth>
-        <LastMonth v-show="isLastMonth"></LastMonth>
+        <!-- <AddRecord v-show="isAdd"></AddRecord> -->
     </div>
 </template>
 
 <script>
 import Head from '@/components/Head';
 import AddRecord from '@/components/AddRecord';
-import CurrentMonth from '@/components/CurrentMonth';
-import LastMonth from '@/components/LastMonth';
 
 export default {
     name: 'Homepage',
-    components: { Head, AddRecord, CurrentMonth, LastMonth },
+    components: { Head, AddRecord },
     data () {
         return {
             userName: '',
-            isAdd: false,
             isCurrentMonth: true,
             isLastMonth: false,
         }
@@ -47,14 +42,11 @@ export default {
     methods: {
         selectLeftItem: function(index) {
             let _this = this;
-            _this.isAdd = false;
             _this.isCurrentMonth = false;
             _this.isLastMonth = false;
             if(index === 0) {
-                _this.isAdd = true;
-            }  else if(index === 1) {
                 _this.isCurrentMonth = true;
-            } else {
+            }  else {
                 _this.isLastMonth = true;
             }
         },

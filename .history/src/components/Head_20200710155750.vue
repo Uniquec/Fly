@@ -36,7 +36,6 @@ export default {
 
 <style scoped>
 .head-box {
-  width: 100%;
   background-color: #3a72c6;
   padding: 10px;
   display: flex;

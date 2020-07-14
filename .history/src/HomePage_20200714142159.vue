@@ -18,20 +18,16 @@
             </div>
         </div>
         <AddRecord v-show="isAdd"></AddRecord>
-        <CurrentMonth v-show="isCurrentMonth"></CurrentMonth>
-        <LastMonth v-show="isLastMonth"></LastMonth>
     </div>
 </template>
 
 <script>
 import Head from '@/components/Head';
 import AddRecord from '@/components/AddRecord';
-import CurrentMonth from '@/components/CurrentMonth';
-import LastMonth from '@/components/LastMonth';
 
 export default {
     name: 'Homepage',
-    components: { Head, AddRecord, CurrentMonth, LastMonth },
+    components: { Head, AddRecord },
     data () {
         return {
             userName: '',
@@ -47,14 +43,11 @@ export default {
     methods: {
         selectLeftItem: function(index) {
             let _this = this;
-            _this.isAdd = false;
             _this.isCurrentMonth = false;
             _this.isLastMonth = false;
-            if(index === 0) {
-                _this.isAdd = true;
-            }  else if(index === 1) {
+            if(index === 1) {
                 _this.isCurrentMonth = true;
-            } else {
+            }  else if(index === 2) {
                 _this.isLastMonth = true;
             }
         },

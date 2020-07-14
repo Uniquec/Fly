@@ -6,7 +6,6 @@ import router from './router';
 import { 
   Alert,
   Button,
-  DatePicker,
   Dropdown,
   DropdownMenu,
   DropdownItem,
@@ -14,29 +13,18 @@ import {
   Input,
   Link,
   MessageBox,
-  Radio,
-  RadioGroup,
-  RadioButton,
-  Table,
-  TableColumn,
 } from 'element-ui';
 
 Vue.config.productionTip = false;
 
 Vue.use(Alert);
 Vue.use(Button);
-Vue.use(DatePicker);
 Vue.use(Dropdown);
 Vue.use(DropdownMenu);
 Vue.use(DropdownItem);
 Vue.use(Icon);
 Vue.use(Input);
 Vue.use(Link);
-Vue.use(Radio);
-Vue.use(RadioGroup);
-Vue.use(RadioButton);
-Vue.use(Table);
-Vue.use(TableColumn);
 Vue.prototype.$msgbox = MessageBox;
 Vue.prototype.$alert = MessageBox.alert;
 

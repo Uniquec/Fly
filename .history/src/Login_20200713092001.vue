@@ -33,7 +33,7 @@
                 type="password"
                 placeholder="请输入密码"
                 v-model="password"
-                show-password
+                :clearable="true"
                 >
             </el-input>
         </div>
@@ -104,15 +104,7 @@ export default {
                 });
             }
         }
-        if(_this.isCode) {
-            if(_this.phone === '18268649553' && _this.code === '1234') {
-                _this.$router.push({ name: 'Homepage', params:{userName: 'user1'} });
-            } else {
-                _this.$alert('手机号或验证码错误，请重新登录', '登录失败', {
-                    confirmButtonText: '确定',
-                });
-            }
-        }
+        
      }
   }
 }

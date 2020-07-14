@@ -19,7 +19,6 @@
         </div>
         <AddRecord v-show="isAdd"></AddRecord>
         <CurrentMonth v-show="isCurrentMonth"></CurrentMonth>
-        <LastMonth v-show="isLastMonth"></LastMonth>
     </div>
 </template>
 
@@ -27,11 +26,10 @@
 import Head from '@/components/Head';
 import AddRecord from '@/components/AddRecord';
 import CurrentMonth from '@/components/CurrentMonth';
-import LastMonth from '@/components/LastMonth';
 
 export default {
     name: 'Homepage',
-    components: { Head, AddRecord, CurrentMonth, LastMonth },
+    components: { Head, AddRecord, CurrentMonth },
     data () {
         return {
             userName: '',

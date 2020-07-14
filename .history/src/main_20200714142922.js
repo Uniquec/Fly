@@ -14,11 +14,6 @@ import {
   Input,
   Link,
   MessageBox,
-  Radio,
-  RadioGroup,
-  RadioButton,
-  Table,
-  TableColumn,
 } from 'element-ui';
 
 Vue.config.productionTip = false;
@@ -32,11 +27,6 @@ Vue.use(DropdownItem);
 Vue.use(Icon);
 Vue.use(Input);
 Vue.use(Link);
-Vue.use(Radio);
-Vue.use(RadioGroup);
-Vue.use(RadioButton);
-Vue.use(Table);
-Vue.use(TableColumn);
 Vue.prototype.$msgbox = MessageBox;
 Vue.prototype.$alert = MessageBox.alert;
 

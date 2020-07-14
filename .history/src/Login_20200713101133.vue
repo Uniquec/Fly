@@ -33,7 +33,7 @@
                 type="password"
                 placeholder="请输入密码"
                 v-model="password"
-                show-password
+                :clearable="true"
                 >
             </el-input>
         </div>
