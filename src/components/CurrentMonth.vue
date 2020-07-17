@@ -1,32 +1,45 @@
 <template>
-    <div>
+    <div class="current-box">
+        <el-radio-group v-model="showType" @change="changeShowType" class="type-box">
+            <el-radio-button label="表格">表格</el-radio-button>
+            <el-radio-button label="饼图">饼图</el-radio-button>
+        </el-radio-group>
         <el-table
             :data="tableData"
             border
-            style="width: 100%"
+            style="width: 80%"
             show-summary
+            :height="tableHeight"
+            v-show="isTable"
         >
             <el-table-column
                 prop="date"
                 label="日期"
-                width="180">
+                align="center"
+                width="120">
             </el-table-column>
             <el-table-column
                 prop="price"
                 label="金额（元）"
+                align="center"
                 sortable
-                width="180">
+                width="120">
             </el-table-column>
             <el-table-column
                 prop="type"
-                label="类别">
+                label="类别"
+                align="center"
+                width="120">
             </el-table-column>
             <el-table-column
                 prop="remarks"
-                label="备注">
+                label="备注"
+                align="center"
+                width="250">
             </el-table-column>
             <el-table-column
-                label="操作">
+                label="操作"
+                align="center">
                 <template slot-scope="scope">
                     <el-button
                     @click.native.prevent="deleteRow(scope.$index, tableData)"
@@ -37,6 +50,7 @@
                 </template>
             </el-table-column>
         </el-table>
+        <div id="myChart" :style="{width: '450px', height: '450px',margin: 'auto'}" v-show="!isTable"></div>
     </div>
 </template>
 <script>
@@ -45,15 +59,132 @@ export default {
     data () {
         return {
             tableData:[{
+                date: '2020/07/15',
+                price: '4',
+                type: '交通',
+                remarks: '地铁',
+            },{
                 date: '2020/07/14',
                 price: '3',
-                type: 'triffic',
+                type: '交通',
                 remarks: '地铁',
-            }]
+            },{
+                date: '2020/07/13',
+                price: '18',
+                type: '餐饮',
+                remarks: '外卖',
+            },{
+                date: '2020/07/13',
+                price: '120',
+                type: '购物',
+                remarks: '餐巾纸',
+            },{
+                date: '2020/07/13',
+                price: '200',
+                type: '服饰',
+                remarks: '外套',
+            },],
+            tableHeight: 0,
+            showType: '表格',
+            isTable: true,
         }
+    },
+    beforeMount: function() {
+        this.calculateHeight();
+    },
+    methods: {
+        calculateHeight: function() {
+            let _this = this;
+            let tableLength = _this.tableData.length;
+            if(tableLength <= 6) {
+                _this.tableHeight = 57 * tableLength + 108;
+            }else {
+                _this.tableHeight = 450;
+            }
+        },
+        deleteRow(index, rows) {
+            rows.splice(index, 1);
+            this.calculateHeight();
+            this.drawLine();
+        },
+        drawLine(){
+            let _this = this;
+            let xArray = [];
+            let yArray = [];
+            let sum = [{
+                value: parseInt(_this.tableData[0].price),
+                name:  _this.tableData[0].type
+            }];
+            for(let i = 1;i < _this.tableData.length;i++) {
+                for(let j = 0; j < sum.length;j++){
+                    if(sum[j].name === _this.tableData[i].type) {
+                        sum[j].value += parseInt(_this.tableData[i].price); 
+                        break;
+                    }else {
+                        sum.push({
+                            value: parseInt(_this.tableData[i].price),
+                            name:  _this.tableData[i].type
+                        });
+                        break;
+                    }
+                }
+            }
+            for(let i = 0; i < sum.length;i++) {
+                xArray.push(sum[i].name);
+                yArray.push(sum[i].value);
+            }
+            // 基于准备好的dom，初始化echarts实例
+            let myChart = this.$echarts.init(document.getElementById('myChart'))
+            // 绘制图表
+            myChart.setOption({
+                 tooltip: {
+                    trigger: 'item',
+                    formatter: '{b}: {c} ({d}%)'
+                },
+                legend: {
+                    data: xArray,
+                    left:"center",                              
+                    top:"bottom",                              
+                    orient:"horizontal",                        
+                },
+                series: [
+                    {
+                        type: 'pie',
+                        radius: '50%',
+                        center: ['50%', '50%'],
+                        data: sum,
+                        hoverAnimation:true,
+                        emphasis: {
+                            label: {
+                                show: true,
+                            }
+                        },
+                    }
+                ]
+            });
+        },
+        changeShowType: function() {
+            let _this = this;
+            if(_this.showType === '饼图') {
+                _this.isTable = false;
+                this.drawLine();
+            } else {
+                _this.isTable = true;
+            }
+        },
     },
 }
 </script>
 <style scoped>
-
+.current-box {
+    padding: 50px;
+    width: 70%;
+}
+.type-box {
+    float: right;
+}
+#myChart canvas {
+    width: 450px;
+    height: 450px;
+}
 </style>
