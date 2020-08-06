@@ -5,8 +5,10 @@
             <el-date-picker
                 v-model="selectedMonth"
                 type="month"
+                value-format="yyyy-MM"
                 :placeholder="currentMonth">
             </el-date-picker>
+            <el-button type="primary" style="margin-left:10px" @click="queryMonth">查询</el-button>
         </div>
         <el-radio-group v-model="showType" @change="changeShowType" class="type-box">
             <el-radio-button label="表格">表格</el-radio-button>
@@ -115,6 +117,10 @@ export default {
             }else {
                 _this.tableHeight = 450;
             }
+        },
+        queryMonth: function() {
+            let _this = this;
+            console.log(_this.selectedMonth)
         },
         deleteRow(index, rows) {
             rows.splice(index, 1);
