@@ -1,5 +1,13 @@
 <template>
     <div class="current-box">
+        <div class="choose-month-box">
+            <div>请选择查询月份：</div>
+            <el-date-picker
+                v-model="selectedMonth"
+                type="month"
+                :placeholder="currentMonth">
+            </el-date-picker>
+        </div>
         <el-radio-group v-model="showType" @change="changeShowType" class="type-box">
             <el-radio-button label="表格">表格</el-radio-button>
             <el-radio-button label="饼图">饼图</el-radio-button>
@@ -55,9 +63,11 @@
 </template>
 <script>
 export default {
-    name: 'CurrentMonth',
+    name: 'MonthRecord',
     data () {
         return {
+            selectedMonth: '',
+            currentMonth: '',
             tableData:[{
                 date: '2020/07/15',
                 price: '4',
@@ -91,6 +101,10 @@ export default {
     },
     beforeMount: function() {
         this.calculateHeight();
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = date.getMonth() > 8 ? date.getMonth() + 1 : '0'+(date.getMonth() + 1);
+        this.currentMonth =  year + '-' + month;
     },
     methods: {
         calculateHeight: function() {
@@ -179,6 +193,11 @@ export default {
 .current-box {
     padding: 50px;
     width: 70%;
+}
+.choose-month-box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
 }
 .type-box {
     float: right;
