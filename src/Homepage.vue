@@ -13,9 +13,13 @@
             <div class="operate-item" :class="{'selected-item': isMonthRecord}">
                 <el-link icon="el-icon-s-grid" @click="selectLeftItem(1)">月明细</el-link>
             </div>
+            <div class="operate-item" :class="{'selected-item': isSeting}">
+                <el-link icon="el-icon-s-tools" @click="selectLeftItem(2)">设置</el-link>
+            </div>
         </div>
         <AddRecord v-show="isAdd"></AddRecord>
         <MonthRecord v-show="isMonthRecord"></MonthRecord>
+        <Setting v-show="isSeting"></Setting>
     </div>
 </template>
 
@@ -23,15 +27,17 @@
 import Head from '@/components/Head';
 import AddRecord from '@/components/AddRecord';
 import MonthRecord from '@/components/MonthRecord';
+import Setting from '@/components/Setting';
 
 export default {
     name: 'Homepage',
-    components: { Head, AddRecord, MonthRecord },
+    components: { Head, AddRecord, MonthRecord, Setting },
     data () {
         return {
             userName: '',
             isAdd: false,
             isMonthRecord: true,
+            isSeting: false,
         }
     },
     beforeMount: function() {
@@ -43,11 +49,14 @@ export default {
             let _this = this;
             _this.isAdd = false;
             _this.isMonthRecord = false;
+            _this.isSeting = false;
             if(index === 0) {
                 _this.isAdd = true;
             }  else if(index === 1) {
                 _this.isMonthRecord = true;
-            } 
+            } else if(index === 2) {
+                _this.isSeting = true;
+            }
         },
     }
 }
@@ -81,5 +90,8 @@ export default {
 }
 .selected-item {
     background-color: #cde6f6;
+}
+.el-icon-s-tools {
+    margin-left: -15px;
 }
 </style>

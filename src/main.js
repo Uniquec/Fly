@@ -19,6 +19,7 @@ import {
   RadioButton,
   Table,
   TableColumn,
+  Upload,
 } from 'element-ui';
 
 Vue.config.productionTip = false;
@@ -37,6 +38,7 @@ Vue.use(RadioGroup);
 Vue.use(RadioButton);
 Vue.use(Table);
 Vue.use(TableColumn);
+Vue.use(Upload);
 Vue.prototype.$msgbox = MessageBox;
 Vue.prototype.$alert = MessageBox.alert;
 

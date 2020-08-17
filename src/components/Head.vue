@@ -7,8 +7,6 @@
         <i class="el-icon-arrow-down el-icon--right"></i>
       </span>
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item>更改信息</el-dropdown-item>
-        <el-dropdown-item>更改密码</el-dropdown-item>
         <el-dropdown-item command="logout">退出</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
@@ -27,7 +25,7 @@ export default {
   methods: {
     handleCommand(command) {
       if(command === "logout") {
-        this.$router.replace('/')
+        this.$router.replace('/');
       }
     }
   }
@@ -36,11 +34,11 @@ export default {
 
 <style scoped>
 .head-box {
-  width: 100%;
   background-color: #3a72c6;
   padding: 10px;
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 .title {
   color: #ffffff;
