@@ -74,6 +74,14 @@ export default {
         _this.userName = _this.$route.params.userName;
         _this.username = _this.$route.params.userName;
     },
+    methods:{
+        handleAvatarSuccess: function() {
+        
+        },
+        beforeAvatarUpload: function() {
+            
+        }
+    }
 }
 </script>
 <style scoped>

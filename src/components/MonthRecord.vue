@@ -14,14 +14,14 @@
             <el-radio-button label="表格">表格</el-radio-button>
             <el-radio-button label="饼图">饼图</el-radio-button>
         </el-radio-group>
-        <el-table
+         <el-table
             :data="tableData"
             border
             style="width: 80%"
             show-summary
             :height="tableHeight"
             v-show="isTable"
-        >
+            >
             <el-table-column
                 prop="date"
                 label="日期"
@@ -38,8 +38,7 @@
             <el-table-column
                 prop="type"
                 label="类别"
-                align="center"
-                width="120">
+                align="center">
             </el-table-column>
             <el-table-column
                 prop="remarks"
@@ -47,11 +46,17 @@
                 align="center"
                 width="250">
             </el-table-column>
-            <el-table-column
+             <el-table-column
                 label="操作"
                 align="center">
                 <template slot-scope="scope">
                     <el-button
+                    @click.native.prevent="changeRow(scope.$index, tableData)"
+                    type="text"
+                    size="small">
+                    修改
+                    </el-button>
+                     <el-button
                     @click.native.prevent="deleteRow(scope.$index, tableData)"
                     type="text"
                     size="small">
@@ -127,6 +132,9 @@ export default {
             this.calculateHeight();
             this.drawLine();
         },
+        changeRow(index, rows) {
+
+        },
         drawLine(){
             let _this = this;
             let xArray = [];
@@ -197,7 +205,7 @@ export default {
 </script>
 <style scoped>
 .current-box {
-    padding: 50px;
+    padding: 50px 50px 10px;
     width: 70%;
 }
 .choose-month-box {
