@@ -95,6 +95,21 @@ export default {
      },
      login: function() {
         let _this = this;
+        let url = '';
+        let data = {
+            phone: '',
+            password: ''
+        };
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        })
+        .then(res => res.json())
+        .catch(error => console.log(error))
+        .then(response => console.log(response))
         if(_this.isPassword) {
             if(_this.phone === '18268649553' && _this.password === '111111') {
                 _this.$router.push({ name: 'Homepage', params:{userName: 'user1'} });

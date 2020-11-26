@@ -22,6 +22,9 @@ import {
   Upload,
 } from 'element-ui';
 
+// import { Uploader } from 'vant';
+// Vue.use(Uploader);
+
 Vue.config.productionTip = false;
 
 Vue.use(Alert);
