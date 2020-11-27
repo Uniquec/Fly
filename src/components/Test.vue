@@ -1,28 +1,30 @@
 <template>
-  <div class="head-box">
-    <van-button type="primary">主要按钮</van-button>
+  <div class="test-box">
+    <van-uploader :after-read="afterRead" v-model="fileList" :max-count="1" />
   </div>
 </template>
 
 <script>
-import { Button } from 'vant';
-
 export default {
   name: 'Test',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
+      fileList:[],
     }
   },
   methods: {
-    handleCommand(command) {
-      if(command === "logout") {
-        this.$router.replace('/');
-      }
-    }
+    afterRead(file) {
+      // 此时可以自行将文件上传至服务器
+      console.log(file);
+      let _this = this;
+      _this.fileList[0].url = file.content 
+    },
   }
 }
 </script>
 
 <style scoped>
+.test-box {
+  padding: 100px;
+}
 </style>

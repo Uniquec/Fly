@@ -7,13 +7,10 @@
         "libraryName": "element-ui",
         "styleLibraryName": "theme-chalk"
       }
-    ],[
-      "component",
-      {
-        "libraryName": "vant",
-        "style": true
-      },
-      "vant"
-    ]
+    ],["import", {
+      "libraryName": "vant",
+      "libraryDirectory": "es",
+      "style": true
+    }]
   ]
 }

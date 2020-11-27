@@ -16,14 +16,10 @@
             <div class="operate-item" :class="{'selected-item': isSeting}">
                 <el-link icon="el-icon-s-tools" @click="selectLeftItem(2)">设置</el-link>
             </div>
-            <div class="operate-item" :class="{'selected-item': isTest}">
-                <el-link icon="el-icon-s-tools" @click="selectLeftItem(3)">测试</el-link>
-            </div>
         </div>
         <AddRecord v-show="isAdd"></AddRecord>
         <MonthRecord v-show="isMonthRecord"></MonthRecord>
         <Setting v-show="isSeting"></Setting>
-        <Test v-show="isTest"></Test>
     </div>
 </template>
 
@@ -32,18 +28,17 @@ import Head from '@/components/Head';
 import AddRecord from '@/components/AddRecord';
 import MonthRecord from '@/components/MonthRecord';
 import Setting from '@/components/Setting';
-import Test from '@/components/Test';
 
 export default {
     name: 'Homepage',
-    components: { Head, AddRecord, MonthRecord, Setting, Test },
+    components: { Head, AddRecord, MonthRecord, Setting },
     data () {
         return {
             userName: '',
             isAdd: false,
             isMonthRecord: false,
             isSeting: false,
-            isTest: true,
+            // isTest: true,
         }
     },
     beforeMount: function() {
@@ -62,9 +57,7 @@ export default {
                 _this.isMonthRecord = true;
             } else if(index === 2) {
                 _this.isSeting = true;
-            } else if(index === 3) {
-                _this.isTest = true;
-            }
+            } 
         },
     }
 }
